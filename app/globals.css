@@ -1,26 +1,91 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Design tokens. Light is the default; the inline script in app/layout.tsx sets
+ * data-theme on <html> before first paint (saved choice, else OS preference).
+ */
+:root,
+[data-theme="light"] {
+  --canvas: #ffffff;
+  --panel: #f6f7f9;
+  --rail: #eceef2;
+  --tabbar: #f1f2f5;
+  --line: #dfe2e8;
+  --fg: #1b1f27;
+  --muted: #646b78;
+  --subtle: #9097a3;
+  --hover: #e5e8ee;
+  --selected: #dde6f7;
+  --accent: #1d4ed8;
+  --accent-soft: #e6edfc;
+  --accent-fg: #ffffff;
+  --danger: #c53030;
+  --warning: #b7791f;
+  --success: #2f855a;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --canvas: #16181d;
+  --panel: #1c1f25;
+  --rail: #121418;
+  --tabbar: #1a1c21;
+  --line: #2c3038;
+  --fg: #e3e6eb;
+  --muted: #9aa1ad;
+  --subtle: #6b727e;
+  --hover: #262a32;
+  --selected: #24324d;
+  --accent: #5b8def;
+  --accent-soft: #1f2b45;
+  --accent-fg: #0b1020;
+  --danger: #f07171;
+  --warning: #e0b45c;
+  --success: #5cc28c;
+  color-scheme: dark;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-canvas: var(--canvas);
+  --color-panel: var(--panel);
+  --color-rail: var(--rail);
+  --color-tabbar: var(--tabbar);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-hover: var(--hover);
+  --color-selected: var(--selected);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-fg: var(--accent-fg);
+  --color-danger: var(--danger);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--canvas);
+  color: var(--fg);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  overflow: hidden;
+}
+
+/* Thin, unobtrusive scrollbars for the tab strip and panels. */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
